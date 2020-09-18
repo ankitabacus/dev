@@ -1,0 +1,166 @@
+
+<div class="main-container">
+  <div class="container">
+    <div class="cs-header">
+      <div class="module-name">
+        <h2>Check In</h2>
+      </div>
+      <div class="left-auto">
+        <div class="tabs">
+          <ul>
+            <li><a class="pr50" [ngClass]="show_today ? 'active' : ''" (click)="change_tab('get_today_checkin_new',1)">Today <span class="counter">{{count_1}}</span></a></li>
+            <li><a class="pr50" [ngClass]="!show_today ? 'active' : ''" (click)="change_tab('get_all_checkin_new',2)">All <span class="counter">{{count_2}}</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-body pb60">
+      <div class="cs-table">
+        <div class="sticky-head">
+          <div class="table-head">
+            <table>
+              <tr>
+                <th class="w100">Date</th>
+                <th  class="w170">Sales User</th>
+                <th>Company Name</th>
+                <th class="w200">Check in</th>
+                <th class="w200">Checkout</th>
+                <th class="w200">Remark</th>
+                <th class="w150">Document</th>
+              </tr>
+            </table>
+          </div>
+          <div class="table-head bdrt">
+            <table>
+              <tr>
+                <th class="w100">
+                  <div class="th-search-acmt" *ngIf="!show_today">
+                    <mat-form-field class="example-full-width cs-input"  >
+                      <input matInput [matDatepicker]="picker" placeholder="Date" (dateChange)="distributorList(show_today ? 'get_today_checkin_new' : 'get_all_checkin_new', show_today ? '1' : '2' ,data)" name="date_created" [(ngModel)]="data.date_created">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </th>
+                <th  class="w170" >
+                  <div class="th-search-acmt">
+                    <mat-form-field class="example-full-width cs-input select-input">
+                      <input matInput placeholder="Enter Name...."  (keyup.enter)="distributorList(show_today ? 'get_today_checkin_new' : 'get_all_checkin_new', show_today ? '1' : '2')" name="name" #name="ngModel" [(ngModel)]="data.user_name">
+                    </mat-form-field>
+                  </div>
+                </th>
+                <th>
+                  <div class="th-search-acmt">
+                    <mat-form-field class="example-full-width cs-input select-input">
+                      <input matInput placeholder="Enter Name...."  (keyup.enter)="distributorList(show_today ? 'get_today_checkin_new' : 'get_all_checkin_new', show_today ? '1' : '2')" name="name" #name="ngModel" [(ngModel)]="data.company_name">
+                    </mat-form-field>
+                  </div>
+                </th>
+                <th class="w200"></th>
+                <th class="w200"></th>
+                <th class="w200"></th>
+                <th class="w150"></th>
+              </tr>
+            </table>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <div class="table-content">
+            <table>
+              <tr *ngFor="let list of checkins;let i=index">
+                <td class="w100">{{list.date_created != '0000-00-00 00:00:00' ? (list.date_created | date : 'MMM d, y') : ''}}</td>
+                <td class="w170">
+                  {{list.exec_name}}
+                </td>
+                <td  *ngIf="list.dr_id != '0'">{{list.company_name}}
+                  (<span style="font-weight: 500;" *ngIf="list.type == '1'">Channel Partner</span>
+                  <span style="font-weight: 500;" *ngIf="list.type == '3'">Dealer</span>
+                  <span style="font-weight: 500;" *ngIf="list.type == '7'">Direct Dealer</span>
+                  <span style="font-weight: 500;" *ngIf="list.type != '7' && list.type != '1' && list.type != '3'">Other</span>) 
+                </td>
+                <td *ngIf="list.dr_id == '0'">{{list.other_name}}</td>
+                <td class="w200" matTooltip="{{list.visit_start != '0000-00-00 00:00:00' ? (list.visit_start | date : 'h:mm a') : 'NA'}}  {{list.start_address}}  " matTooltipPosition="above">
+                  <div class="one-line">
+                    <span style="font-weight: 500;">{{list.visit_start != '0000-00-00 00:00:00' ? (list.visit_start | date : 'h:mm a') : 'NA'}}</span>  {{list.start_address}}</div>
+                  </td>
+                  <td class="w200" matTooltip="{{list.visit_end != '0000-00-00 00:00:00' ? (list.visit_end | date: 'h:mm a') : 'NA'}} {{list.address}}   " matTooltipPosition="above">
+                    <div class="one-line">
+                      <span style="font-weight: 500;">
+                        {{list.visit_end != '0000-00-00 00:00:00' ? (list.visit_end | date: 'h:mm a') : 'NA'}}</span>   {{list.address}} 
+                      </div>
+                    </td>
+                    <td class="w200" matTooltip=" {{list.description}}" matTooltipPosition="above"> 
+                      <div class="one-line">
+                        {{list.description}}
+                      </div>
+                    </td>
+                    <td class="w150"> 
+                      <div class="one-line" *ngIf="list.Doc">
+                        <!-- <a href="{{list.Doc}}" target="_blank">Click To View</a> -->
+                        <a download="checkinDoc.png" href="{{list.Doc}}"  target="_blank">Download Doc</a>
+                        
+                      </div>
+                      <div class="one-line" *ngIf="!list.Doc">
+                        N/A
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <ng-container *ngFor="let lead of skelton">
+                    <tr class="sk-loading"  *ngIf="loader">
+                      <td class="w100"><div>&nbsp;</div></td>
+                      <td class="w170"><div>&nbsp;</div></td>
+                      <td><div>&nbsp;</div></td>
+                      <td class="w200"><div>&nbsp;</div></td>
+                      <td class="w200"><div>&nbsp;</div></td>
+                      <td class="w200"><div>&nbsp;</div></td>
+                      <td class="w150"><div>&nbsp;</div></td>
+                    </tr>
+                  </ng-container>
+                </table>
+                <div
+                class="search-results"
+                data-infinite-scroll
+                debounce
+                [infiniteScrollDistance]="1"
+                [infiniteScrollUpDistance]="2"
+                [infiniteScrollThrottle]="10"
+                (scrolled)="distributorList('get_all_checkin_new',2)"              
+                >
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+        <div class="data-not-available"  *ngIf="data_not_found==true">
+          <div class="outer">
+            <div class="iinear">
+              <div class="figure" matRipple>
+                <div class="header">
+                  <img src="assets/img/data-not-available-header.svg" alt="">
+                </div>
+                
+                <div class="description">
+                  <div class="cs-heading">
+                    <h2>Check In</h2>
+                  </div>
+                  <div class="img">
+                    <i class="material-icons">error_outline</i>
+                  </div>
+                  <div class="psc">
+                    <p>Data Not Available</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="fix-btn">
+    <a class="bottom-btn ecxel-btn" matTooltip="Download Excel" matTooltipPosition="above" mat-raised-button (click)="exportAsXLSX()"><img src="assets/img/excel.svg"></a>
+  </div>

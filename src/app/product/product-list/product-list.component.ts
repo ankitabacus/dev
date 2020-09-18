@@ -1,0 +1,205 @@
+import { Component, OnInit } from '@angular/core';
+import { slideToTop } from '../../router-animation/router-animation.component';
+import { PearlService } from 'src/app/pearl.service';
+import { Router } from '@angular/router';
+import { DialogComponent } from 'src/app/dialog.component';
+import { ToastrManager } from 'ng6-toastr-notifications';
+
+
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  animations: [slideToTop()]
+})
+export class ProductListComponent implements OnInit {
+  productlist:any=[];
+  tmp_productList:any=[];
+  filter:any=false;
+  data:any=[];
+  page_limit:any=50;
+  start:any=0;
+  brand_list:any=[];
+  product_brand:any=[];
+  count:any;
+  category_list:any=[];
+  subCategory_list:any=[];
+  total_page:any='';
+  pagenumber:any='';
+  loader:any;
+  data_not_found=false;
+  skelton:any={}
+  tab_active = 'all';
+  scheme_active_count:any;
+  
+  constructor(public dialog:DialogComponent,public serve:PearlService,public rout:Router,public toast:ToastrManager) { 
+    this.getProductList('all');
+    this.getBrandList();
+    this.getCategoryList();
+    this.skelton = new Array(10);
+  }
+  
+  ngOnInit() {
+  }
+  
+  getProductList(type)
+  {
+    this.tab_active = type;
+    
+    this.loader=1;
+    
+    this.serve.fetchData({'brand':this.data.brand,'category':this.data.category,'sub_category':this.data.sub_category,"product_name":this.data.product_name,"cat_no":this.data.cat_no,'start':this.start,'pagelimit':this.page_limit,'sch_status':this.data.scheme_status,'type':type},"Product/product_list").subscribe((result)=>{
+      this.productlist=result['product_list'];
+      this.count=result['count'];
+      this.scheme_active_count = result['scheme_active_count'];
+      if(this.productlist.length==0)
+      {
+        console.log("yes");
+      }
+      this.total_page = Math.ceil(this.count/this.page_limit);
+      this.pagenumber = Math.ceil(this.start/this.page_limit)+1;
+      this.tmp_productList=this.productlist;
+      setTimeout (() => {
+        this.loader='';
+      }, 700);
+      if(this.productlist.length ==0){
+        this.data_not_found=true;
+      }else{
+        this.data_not_found=false;
+        
+      }
+    })
+  }
+  excel_data:any=[];
+  exportAsXLSX():void {
+    for(let i=0;i<this.productlist.length;i++){
+      this.excel_data.push({'Product Name':this.productlist[i].product_name,'Product Code':this.productlist[i].cat_no,'Category':this.productlist[i].category,'Subcategory':this.productlist[i].sub_category,'Description':this.productlist[i].description});
+    }
+    this.serve.exportAsExcelFile(this.excel_data, 'PRODUCT SHEET');
+  }
+  
+  
+  goToDetailHandler(pId) {
+    
+    console.log(pId);
+    window.open(`/product-detail/`+ pId);
+  }
+  
+  
+  deleteProduct(id)
+  {
+    this.dialog.delete('Product Data !').then((result) => {
+      if(result){
+        console.log('Test Done');
+        let value={"id":id}
+        this.serve.fetchData(value,"Product/delete_product").subscribe((result)=>{
+          if(result)
+          {
+            this.getProductList('all');
+          }});
+        } });
+      }
+      
+      
+      refresh()
+      {
+        this.getProductList('all');
+      }
+      
+      
+      productdetail:any=[];
+      
+      detailProduct(id)
+      {
+        let value={"id":id}
+        this.serve.fetchData(value,"Product/product_detail").subscribe((result=>{
+          this.productdetail=result['product_detail'];
+          if(result)
+          {
+            this.rout.navigate(['/product-detail/'+id]);
+          }      
+        }))
+      }
+      
+      Filter()
+      {
+        this.filter=true;
+      }
+      close()
+      {
+        this.filter=false;
+      }
+      
+      clear()
+      {
+        this.data.brand="";
+        this.data.category="";
+        this.data.sub_category="";
+        // this.serve.fetchData({'brand':this.data.brand,'category':this.data.category,'sub_category':this.data.sub_category,"product_name":this.data.product_name,"cat_no":this.data.cat_no,'start':this.start,'pagelimit':this.page_limit},"Product/product_list").subscribe((result)=>{
+        //   this.productlist=result['product_list'];
+        // })
+        this.refresh();
+      }
+      
+      getBrandList()
+      {
+        this.serve.fetchData(0,"/Product/product_brand_list/").subscribe((result)=>{
+          this.brand_list=result['brand'];
+          this.product_brand=this.brand_list;
+        });
+      }
+      
+      brand;
+      tmp_category:any=[];
+      category;
+      tmp_subcategory:any=[];
+      getCategoryList()
+      {
+        this.serve.fetchData(0,"Product/product_category_list").subscribe((result)=>{
+          this.category_list=result['category'];
+          this.tmp_category=this.category_list;
+        });
+      }
+      
+      getSubCategoryList()
+      {          
+        this.category=this.data.category;
+        let value={"brand":this.brand,"category":this.category};
+        
+        this.serve.fetchData(value,"Product/product_sub_category_list").subscribe((result)=>{
+          this.subCategory_list=result['sub_category'];
+          this.tmp_subcategory=this.subCategory_list;
+        });
+      }
+      
+      brand_array_filter(data,array)
+      {
+        
+        this.brand_list=this.filterList(data.toUpperCase(),array);
+      }
+      
+      category_array_filter(data,array)
+      {
+        this.category_list=this.filterList(data.toUpperCase(),array);
+      }
+      sub_categoryy_array_filter(data,array)
+      {
+        this.subCategory_list=this.filterList(data.toUpperCase(),array);
+      }
+      
+      new_array:any=[];
+      filterList(search_word,search_array)
+      {
+        this.new_array=[];
+        for(var i=0; i<search_array.length; i++)
+        {
+          if(search_array[i].toUpperCase().search(search_word) !==-1)
+          {
+            this.new_array.push(search_array[i]);
+          }
+        }
+        return this.new_array;
+      }
+      
+      
+    }
+    

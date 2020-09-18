@@ -1,0 +1,490 @@
+<div class="main-container">
+    <div *ngIf="loader">
+        <mat-spinner class="loader">
+            <div>
+                <p>Loading....</p>
+            </div>
+        </mat-spinner>
+    </div>
+    <div class="container">
+        <div class="cs-header">
+            <div class="cs-back">
+                <a mat-button routerLink="/sale-user-list" routerLinkActive="active"><i class="material-icons">arrow_right_alt</i></a>
+            </div>
+            <div class="module-name">
+                <h2>User Detail1</h2>
+            </div>
+
+        </div>
+        <div class="scroll-body padding10">
+            <div class="row">
+                <div class="col s12">
+                    <div class="details-info">
+                        <!-- <div class="img-box">
+              <img src="assets/img/user.png">
+            </div> -->
+                        <div class="basic-details">
+                            <div class="profile-info">
+                                <ul>
+                                    <li class="col s4">
+                                        <div class="cs-box">
+                                            <img src="assets/img/people.svg" class="fix-img">
+                                            <span>Name</span>
+                                            <p class="link-clr">{{detail.name}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.name,'name')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                    <li class="col s4">
+                                        <div class="cs-box">
+                                            <img src="assets/img/company.svg" class="fix-img">
+                                            <span>Type</span>
+                                            <p>{{detail.user_type}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.user_type,'user_type')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                    <li class="col s4">
+                                        <div class="cs-box">
+                                            <img src="assets/img/designation.svg" class="fix-img">
+                                            <span>Designation</span>
+                                            <p>{{detail.designation}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.access_level,'access_level')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                    <li class="col s4">
+                                        <div class="cs-box">
+                                            <img src="assets/img/gmail.svg" class="fix-img">
+                                            <span>Email</span>
+                                            <p>{{detail.email}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.email,'email')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <ul>
+
+                                    <li class="col s4">
+                                        <div class="cs-box">
+                                            <img src="assets/img/phone.svg" class="fix-img">
+                                            <span>Mobile no</span>
+                                            <p>{{detail.contact_01}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.contact_01,'contact_01')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                    <li class="col s4">
+                                        <div class="cs-box">
+                                            <img src="assets/img/building.svg" class="fix-img">
+                                            <span>Working State</span>
+                                            <p>{{detail.state_name}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.state_name,'working_state')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                    <li class="col s4">
+                                        <div class="cs-box">
+                                            <img src="assets/img/building.svg" class="fix-img">
+                                            <span>Employee Code</span>
+                                            <p>{{detail.employee_id}}</p>
+                                            <!-- <a  class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.employee_id,'employeeCode')"><i class="material-icons">create</i></a> -->
+                                        </div>
+                                    </li>
+                                    <li class="col s4" *ngIf="detail.user_type == 'office' || detail.user_type == 'OFFICE'">
+                                        <div class="cs-box">
+                                            <img src="assets/img/man.svg" class="fix-img">
+                                            <span>Username</span>
+                                            <p>{{detail.username}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.username,'username')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                    <li class="col s4" *ngIf="detail.user_type == 'office' || detail.user_type == 'OFFICE'">
+                                        <div class="cs-box">
+                                            <img src="assets/img/password.svg" class="fix-img">
+                                            <span>Password</span>
+                                            <p>{{detail.password}}</p>
+                                            <a class="edit-icon" color="accent" matRipple matTooltip="EDIT" (click)="openEditDialog(detail.password,'password')"><i class="material-icons">create</i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col s6 cs-figure">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <form (ngSubmit)="updateDetail()">
+                    <div class="col s8">
+                        <div class="sprate-box padding0">
+                            <a class="edit-item" matTooltip="EDIT" color="accent" (click)="editaddress()"><i class="material-icons">edit</i></a>
+                            <div class="full-address">
+                                <div class="top-heading">
+                                    <h2>ADDRESS</h2>
+                                </div>
+                                <div class="ds-from-fields">
+                                    <div class="cs-row">
+                                        <div class="static-info">
+                                            <p>address</p>
+                                            <p>{{detail.street}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="cs-row">
+                                        <div class="static-info">
+                                            <p>State</p>
+                                            <p>{{detail.permanent_address_state}}</p>
+                                        </div>
+                                        <div class="static-info">
+                                            <p>District</p>
+                                            <p>{{detail.district_name}}</p>
+                                        </div>
+                                        <div class="static-info">
+                                            <p>City</p>
+                                            <p>{{detail.city}}</p>
+                                        </div>
+                                        <div class="static-info">
+                                            <p>Pin Code</p>
+                                            <p>{{detail.pincode}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="cs-btn fixedd mt32 text-right">
+                                    <!-- <div class="in-btn">
+                    <button mat-raised-button color="accent" type="save">Save</button>
+                  </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="col s4" *ngIf="team_update==true">
+                    <div class="territory-info">
+                        <div class="head" [ngClass]="{'active':active.user==true}">
+                            <h2>Reporting Manager</h2>
+                            <i class="material-icons search-icon right20" (click)="toggleterritory('user','open')" matRipple>search</i>
+                            <input type="text" placeholder="search..." name="sales_executive" class="fix-search" (input)="getItemsList(search.sales_executive)" #sales_executive="ngModel" [(ngModel)]="search.sales_executive">
+                            <i class="material-icons close-icon" (click)="toggleterritory('user','close')" matRipple>clear</i>
+                        </div>
+
+                        <div class="cs-logs">
+                            <div class="cs-checkbox">
+                                <div class="checkbox-outer">
+                                    <section class="checkbox-inner">
+                                        <ng-container *ngFor="let list of rsm_list;let index=index" aria-required="true">
+                                            <mat-checkbox class="check-list" [checked]="list.check" (change)="product_Brand(list.id,index,$event)" value="{{list.name}}">{{list.name}} | {{list.role_name}}</mat-checkbox>
+                                        </ng-container>
+                                    </section>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col s12">
+                            <div class="cs-btn  text-right pb15">
+                                <div class="in-btn">
+                                    <button mat-raised-button color="accent" (click)="update_assignusers()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col s4">
+                    <!-- <button (click)="edit_assigned_team()">test</button> -->
+                    <div class="sprate-box padding0" *ngIf="team_update==false">
+                        <a class="edit-item" matTooltip="EDIT" color="accent" (click)="edit_assigned_team()"><i class="material-icons">edit</i></a>
+                        <div class="full-address">
+                            <div class="top-heading">
+                                <h2>Reporting Manager</h2>
+                            </div>
+                            <div class="cs-table">
+                                <div class="table-head">
+                                    <table>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="w100">Designation </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="table-container">
+                                    <div class="table-content">
+                                        <table>
+                                            <tr *ngFor="let team of detail['assign_user']">
+                                                <td>{{team.name}}</td>
+                                                <td class="w100">{{team.role_name}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--             
+          <div  class="col s4 pl0" *ngIf="team_update==true">
+            <div class="control-field">
+              <h1>Reporting Manager</h1>
+              <input type="text" placeholder="search..." name="sales_executive" class="fix-search" (input)="getItemsList(search.sales_executive)" #sales_executive="ngModel" [(ngModel)]="search.sales_executive">
+              <div class="cs-checkbox">
+                <div class="checkbox-outer">
+                  <section class="checkbox-inner"  *ngFor="let list of rsm_list;let index=index" aria-required="true" >
+                    <mat-checkbox class="check-list" [checked]="list.check" (change)="product_Brand(list.id,index,$event)" value="{{list.name}}">{{list.name}} | {{list.role_name}}</mat-checkbox>
+                  </section>
+                </div>
+              </div>
+              
+            </div>    
+            <button (click)="update_assignusers()">Update</button>              
+          </div> -->
+
+                <div class="col s4">
+                    <div class="sprate-box padding0">
+                        <!-- <div class="cs-logs">
+                <div class="top-heading">
+                  <h2>CALL LOGS</h2>
+                </div>
+                <div class="logs-outer">
+                  <div class="logs-list">
+                    <ul>
+                      <li>
+                        <div class="name">
+                          Hemant Rajput
+                        </div>
+                        <div class="date">
+                          <img src="assets/img/clock.svg" class="mr10">
+                          12 Oct 2018 | 11:45 AM
+                        </div>
+                        <p>
+                          <strong>Call</strong> : Sed ut perspiciatis unde omnis iste 
+                          natus error sit voluptatem accusantium
+                          doloremque laudantium, totam rem aperiam,
+                          eaque ipsa quae
+                        </p>
+                      </li>
+                      <li>
+                        <div class="name">
+                          Hemant Rajput
+                        </div>
+                        <div class="date">
+                          <img src="assets/img/clock.svg" class="mr10">
+                          12 Oct 2018 | 11:45 AM
+                        </div>
+                        <p>
+                          <strong>Call</strong> : Sed ut perspiciatis unde omnis iste 
+                          natus error sit voluptatem accusantium
+                          doloremque laudantium, totam rem aperiam,
+                          eaque ipsa quae
+                        </p>
+                      </li>
+                      <li>
+                        <div class="name">
+                          Hemant Rajput
+                        </div>
+                        <div class="date">
+                          <img src="assets/img/clock.svg" class="mr10">
+                          12 Oct 2018 | 11:45 AM
+                        </div>
+                        <p>
+                          <strong>Call</strong> : Sed ut perspiciatis unde omnis iste 
+                          natus error sit voluptatem accusantium
+                          doloremque laudantium, totam rem aperiam,
+                          eaque ipsa quae
+                        </p>
+                      </li>
+                      <li>
+                        <div class="name">
+                          Hemant Rajput
+                        </div>
+                        <div class="date">
+                          <img src="assets/img/clock.svg" class="mr10">
+                          12 Oct 2018 | 11:45 AM
+                        </div>
+                        <p>
+                          <strong>Call</strong> : Sed ut perspiciatis unde omnis iste 
+                          natus error sit voluptatem accusantium
+                          doloremque laudantium, totam rem aperiam,
+                          eaque ipsa quae
+                        </p>
+                      </li>
+                      <li>
+                        <div class="name">
+                          Hemant Rajput
+                        </div>
+                        <div class="date">
+                          <img src="assets/img/clock.svg" class="mr10">
+                          12 Oct 2018 | 11:45 AM
+                        </div>
+                        <p>
+                          <strong>Call</strong> : Sed ut perspiciatis unde omnis iste 
+                          natus error sit voluptatem accusantium
+                          doloremque laudantium, totam rem aperiam,
+                          eaque ipsa quae
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt15" *ngIf="detail.user_type == 'OFFICE' || detail.user_type == 'office'">
+                <div class="col s4">
+                    <div class="territory-info">
+                        <div class="head" [ngClass]="{'active':active.branch==true}">
+                            <h2>Assign Modules</h2>
+
+                        </div>
+                        <div class="cs-checkbox">
+                            <div class="checkbox-outer">
+                                <section class="checkbox-inner">
+                                    <!-- <mat-checkbox class="check-list" (change)="assign_module('dashboard',$event)" [checked]="detail.view_dashboard"> 
+                      Dashboard
+                    </mat-checkbox> -->
+                                    <mat-checkbox class="check-list" (change)="assign_module('leads',$event)" [checked]="detail.view_leads">
+                                        Leads
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('lead_channel_partner',$event)" [checked]="detail.view_lead_channel_partner">
+                                        Leads Channel Partner
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('lead_dealer',$event)" [checked]="detail.view_lead_dealer">
+                                        Leads Dealers
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('distribution_network',$event)" [checked]="detail.view_distribution_n_w">
+                                        Distribution Network
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('dist_n_w_channel_partner',$event)" [checked]="detail.view_dist_n_w_channel_partner">
+                                        Distribution Network Channel Partner
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('dist_n_w_direct_dealer',$event)" [checked]="detail.view_dist_n_w_direct_dealer">
+                                        Distribution Network Direct Dealers
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('dist_n_w_dealer',$event)" [checked]="detail.view_dist_n_w_dealer">
+                                        Distribution Network Dealers
+                                    </mat-checkbox>
+
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('orders',$event)" [checked]="detail.view_orders">
+                                        Orders
+                                    </mat-checkbox>
+
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('orders_primary',$event)" [checked]="detail.view_orders_primary">
+                                        Primary Orders
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('orders_secondary',$event)" [checked]="detail.view_orders_secondary">
+                                        Secondary Orders
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('orders_direct',$event)" [checked]="detail.view_orders_direct">
+                                        Direct Orders
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('attendance',$event)" [checked]="detail.view_attendence">
+                                        Attendance
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('check_in',$event)" [checked]="detail.view_check_in">
+                                        Check-In
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('qr_code',$event)" [checked]="detail.view_qr_code">
+                                        OR CODE
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('plumbing_man',$event)" [checked]="detail.view_plumbing_man">
+                                        Plumbing Man
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('consumer',$event)" [checked]="detail.view_consumer">
+                                        Consumer
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('banner',$event)" [checked]="detail.view_banner">
+                                        Banner
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('leaves',$event)" [checked]="detail.view_leaves">
+                                        Leaves
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('travel_plan',$event)" [checked]="detail.view_travel_plan">
+                                        Travel Plan
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('redeem_request',$event)" [checked]="detail.view_redeem_request">
+                                        Redeem Request
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('products',$event)" [checked]="detail.view_products">
+                                        Products
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('users',$event)" [checked]="detail.view_users">
+                                        Users
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('discount',$event)" [checked]="detail.view_discount">
+                                        Discount
+                                    </mat-checkbox>
+                                    <mat-checkbox class="check-list" (change)="assign_module('category_master',$event)" [checked]="detail.view_category_master">
+                                        Category Master
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('scheme_master',$event)" [checked]="detail.view_scheme_master">
+                                        Scheme Master
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('report',$event)" [checked]="detail.view_report">
+                                        Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('user_location_report',$event)" [checked]="detail.view_user_location_report">
+                                        User Location Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('daily_work_report',$event)" [checked]="detail.view_daily_work_report">
+                                        Daily Work Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('monthly_work_report',$event)" [checked]="detail.view_monthly_work_report">
+                                        Monthly Work Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('primary_target_report',$event)" [checked]="detail.view_primary_target_report">
+                                        Primary Target Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('secondary_target_report',$event)" [checked]="detail.view_secondary_target_report">
+                                        Secondary Target Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('primary_secondary_report',$event)" [checked]="detail.view_primary_secondary_report">
+                                        Primary Vs Secondary Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('c_p_sales_report',$event)" [checked]="detail.view_c_p_sales_report">
+                                        C P Sales Report
+                                    </mat-checkbox>
+
+                                    <mat-checkbox class="check-list" (change)="assign_module('product_category_report',$event)" [checked]="detail.view_product_category_report">
+                                        Product & Category Report
+                                    </mat-checkbox>
+
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

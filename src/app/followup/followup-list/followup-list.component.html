@@ -1,0 +1,110 @@
+<div class="main-container" [@routerTransition]>
+    <div class="middle-container padding0">
+      <div class="master-heading">
+          <div class="top-search wp20 ml20">
+              <input type="text" placeholder="SEARCH. . ." name="search" #search="ngModel" [(ngModel)]="value.search" (input)="getItem(value.search)" >
+              <i class="material-icons" >search</i>
+          </div>
+        <!-- <div class="top-pagination m-right-data">
+          <ul>
+            <li class="refresh-area">
+              <a class="refresh-btn" mat-raised-button  matTooltip="Refresh"><i class="material-icons"> refresh</i></a>
+            </li>
+            <li><p>Pages 2 of 6</p></li>
+            <li><button mat-button class="left-btn"><i class="material-icons">keyboard_arrow_left</i></button></li>
+            <li><input type="text" placeholder="GO TO"></li>
+            <li><button mat-button class="right-btn"><i class="material-icons">keyboard_arrow_right</i></button></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+    
+    <div class="container-outer pt0">
+      <div class="container" >
+        <div class="row">
+          <div class="col s12">
+            <div class="cs-table left-right-20">
+              <div class="table-head">
+                <table class="sno-border"> 
+                  <tr>
+                    <th class="w30">&nbsp;</th>
+                    <!-- <th class="w200">Name / Company</th>
+                    <th class="w100">Mobile</th>
+                    <th class="w100">Type</th>
+                    <th class="w200">Business Type / Intrested In</th> -->
+                    <th class="w110">Followup Type</th>
+                    <th class="w110">Followup Date</th>
+                    <th class="w110">Next F/U Type</th>
+                    <th class="w110">Next F/U Date</th>
+                    <th>Remark</th>
+                  </tr>
+                </table>
+              </div>
+              
+              <div class="table-container">
+                <div class="table-content">
+                  <table class="sno-border">
+                    <tr *ngFor="let list of followup_list;let i=index">
+                      <td class="w30">{{i+1}}</td>
+                      <!-- <td class="w200"><a class="link-btn" mat-button routerLink="/" routerLinkActive="active">Monu Chauhan</a></td>
+                      <td class="w100">7289932566 </td>
+                      <td class="w100">Consumer</td>
+                      <td class="w200">Interior Protection</td> -->
+                      <td class="w110">{{list.activity_type}}</td>
+                      <td class="w110">{{list.activity_date}}</td>
+                      <td class="w110">{{list.next_followup_type}}</td>
+                      <td class="w110">{{list.next_followup}}</td>
+                      <td>
+                          {{list.remark}}
+                        <!-- <div class="action-btns">
+                          <a mat-button class="view" >Create Follow</a>
+                      </div>       -->
+                      </td>
+                    </tr>
+                    <!-- <tr>
+                        <td >2</td>
+                        <td ><a class="link-btn" mat-button routerLink="/" routerLinkActive="active">Rohit singh</a></td>
+                        <td>7289932566 </td>
+                        <td>Consumer</td>
+                        <td>Interior Protection</td>
+                        <td>Call</td>
+                        <td>05 Feb 2019</td>
+                        <td>Call</td>
+                        <td>04 Feb 2019</td>
+                        <td>
+                            of reduced words in A and B. Define a binary operation on
+                          <div class="action-btns">
+                            <a mat-button class="view" >Create Follow</a>
+                        </div>      
+                        </td>
+                      </tr>
+                      <tr>
+                          <td >3</td>
+                          <td ><a class="link-btn" mat-button routerLink="/" routerLinkActive="active">Rohit singh</a></td>
+                          <td>7289932566 </td>
+                          <td>Consumer</td>
+                          <td>Interior Protection</td>
+                          <td>Call</td>
+                          <td>05 Feb 2019</td>
+                          <td>Call</td>
+                          <td>04 Feb 2019</td>
+                          <td>
+                              of reduced words in A and B. Define a binary operation on
+                            <div class="action-btns">
+                              <a mat-button class="view" >Create Follow</a>
+                          </div>      
+                          </td>
+                        </tr> -->
+                  </table>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="h50"></div>

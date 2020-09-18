@@ -1,0 +1,165 @@
+
+<div class="main-container">
+  <div class="container">
+    <div class="cs-header">
+      <div class="module-name">
+        <h2>Dealer</h2>
+        <span>Total Dealer: {{dr_count}}</span>
+      </div>
+      <div class="left-auto">
+        <div class="top-pagination">
+          <ul>
+            <li>
+              <a class="refresh-btn" mat-raised-button  matTooltip="Refresh" (click)="distributorList('refresh') "><i class="material-icons"> refresh</i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-body pb60">
+      <mat-spinner class="loader" *ngIf="exp_loader">
+        <div><p>Loading....</p></div>
+      </mat-spinner>
+      <div class="cs-table">
+        <div class="sticky-head">
+          <div class="table-head">
+            <table class="sno-border">
+              <tr>
+                <th class="w40 text-center">&nbsp;</th>
+                <th class="w130">Created Date</th>
+                <th class="w180">Created By</th>
+                <th class="w100">Dealer Id</th>
+                <th>Company Name</th>
+                <th class="w200">State Name</th>
+                <th class="w180" >Assigned Sales User</th>
+              </tr>
+            </table>
+          </div>
+          <div class="table-head bdrt" >
+            <table class="sno-border">
+              <tr>
+                <th class="w40"></th>
+                <th class="w130">
+                  <div class="th-search-acmt">
+                    <mat-form-field class="cs-input date-column infix-bodr">
+                      <input matInput [matDatepicker]="picker" placeholder="Date" name="date_created" [(ngModel)]="search_val.date_created" (dateChange)="onDate($event)" >
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </th>
+                <th class="w180">
+                  <div class="th-search-acmt">
+                    <mat-form-field class="example-full-width cs-input select-input">
+                      <input matInput placeholder="Created By. . ." type="text" name="created_by" [(ngModel)]="search_val.created_by" (keyup.enter)="distributorList()">
+                      
+                    </mat-form-field>
+                  </div>
+                </th>
+                <th class="w100"></th>
+                <th >
+                  <div class="th-search-acmt">
+                    <mat-form-field class="example-full-width cs-input select-input">
+                      <input matInput placeholder="Company Name. . ." name="company_name" (keyup.enter)="distributorList()" [(ngModel)]="search_val.company_name" >
+                    </mat-form-field>
+                  </div>
+                </th>    
+                <th class="w200">
+                  <div class="th-search">
+                    <select (change)="distributorList()" name="state" [(ngModel)]="search_val.state">
+                      <option value="">Select an Option</option>
+                      <option *ngFor="let val of state_values">{{val.state_name}}</option>
+                    </select>
+                  </div>
+                </th>
+                <th class="w180">
+                  <div class="th-search-acmt">
+                    <mat-form-field class="example-full-width cs-input select-input">
+                      <input matInput placeholder="Assigned Sales User. . ." name="assign_user" (keyup.enter)="distributorList()" [(ngModel)]="search_val.assign_user" >
+                    </mat-form-field>
+                  </div>
+                </th> 
+              </tr>
+            </table>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <div class="table-content">
+            <table class="sno-border">
+              <tr *ngFor="let list of distributor_list;let i=index">
+                <td class="w40 text-center">{{i+1}}</td>
+                <td class="w130">{{list.date_created | date : 'MMMM d, y'}}</td>
+                <td *ngIf="!list.created_name" class="w180">Admin</td>
+                <td *ngIf="list.created_name" class="w180">{{list.created_name}}</td>
+                <td class="w100">#{{list.id}}</td>
+                <td><a class="link-btn" mat-button routerLink="/distribution-detail/{{list.id}}" routerLinkActive="active">{{list.company_name}}</a></td>
+                <td class="w200">{{list.state ? list.state : '--'}}</td>
+                
+                <td class="w180">{{list.assign_user}}
+                  <div class="action-btns">
+                    <a mat-button class="view" (click)="userDetail(list.id)"><i class="material-icons">remove_red_eye</i> View</a>
+                    <button mat-button class="delete" (click)="deleteUser(list.id)"><i class="material-icons">delete_sweep</i> Delete</button>
+                  </div>
+                </td>
+              </tr>
+              
+              
+              <ng-container *ngFor="let lead of skelton">
+                <tr class="sk-loading sno-border"  *ngIf="loader">
+                  <td class="w40"><div>&nbsp;</div></td>
+                  <td class="w130"><div>&nbsp;</div></td>
+                  <td class="w180"><div>&nbsp;</div></td>
+                  <td class="w100"><div>&nbsp;</div></td>
+                  <td><div>&nbsp;</div></td>
+                  <td class="w200"><div>&nbsp;</div></td>
+                  <td class="w180"><div>&nbsp;</div></td>
+                </tr>
+              </ng-container>
+            </table>
+            <div
+            class="search-results"
+            data-infinite-scroll
+            debounce
+            [infiniteScrollDistance]="1"
+            [infiniteScrollUpDistance]="2"
+            [infiniteScrollThrottle]="10"
+            (scrolled)="distributorList()"              
+            >
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    <div class="data-not-available" *ngIf="data_not_found==true">
+      <div class="outer">
+        <div class="iinear">
+          <div class="figure" matRipple>
+            <div class="header">
+              <img src="assets/img/data-not-available-header.svg" alt="">
+            </div>
+            
+            <div class="description">
+              <div class="cs-heading">
+                <h2>Dealer List</h2>
+              </div>
+              <div class="img">
+                <i class="material-icons">error_outline</i>
+              </div>
+              <div class="psc">
+                <p>data not Found</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="fix-btn">
+  <a class="bottom-btn ecxel-btn" matTooltip="Download Excel" matTooltipPosition="above" mat-raised-button (click)="exportAsXLSX()"><img src="assets/img/excel.svg"></a>
+  <a class="bottom-btn"  matTooltip="Add New" matTooltipPosition="above" mat-raised-button routerLink="/add-distribution/3"><i class="material-icons">add</i></a>
+</div>

@@ -1,0 +1,75 @@
+<div class="main-container">
+  <div class="container">
+    <div class="cs-header">
+      <div class="module-name">
+        <h2>Discount</h2>
+        <span>Total Discount {{discountList.length}}</span>
+      </div>
+    </div>
+    <div class="scroll-body">
+      <div class="cs-table">
+        <div class="sticky-head">
+          <div class="table-head">
+            <table>
+              <tr>
+                <!-- <th class="w30">&nbsp;</th> -->
+                <th>Category</th>
+                <th class="w150 text-center">Channel Partner (%)</th>
+                <th class="w150 text-center">Direct Dealer(%)</th>
+                <th class="w150 text-center">Dealer(%)</th>
+                <th class="w80 text-center">GST (%)</th>
+              </tr>
+            </table>
+          </div>
+          <div class="table-head bdrt" >
+            <table>
+              <tr>
+                <th >
+                  <div class="th-search-acmt">
+                    <mat-form-field class="example-full-width cs-input select-input">
+                      <input matInput placeholder="Category. . ." (keyup.enter)="getItemsList()" #search="ngModel" [(ngModel)]="value.search">
+                    </mat-form-field>
+                  </div>
+                </th>
+                <th class="w150" ></th>   
+                <th class="w150" ></th>               
+                <th class="w150" ></th>               
+                <th class="w80" ></th>               
+              </tr>
+            </table>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <div class="table-content">
+            <table>
+              <tr *ngFor="let dicount of discountList;let i = index">
+                <td>{{dicount.category}}</td>
+                <td class="w150 text-center purple-shade-1">{{dicount.distributor}}</td>
+                <td class="w150 text-center purple-shade-2">{{dicount.direct_retailer}}</td>
+                <td class="w150 text-center purple-shade-3">{{dicount.dealer}}</td>
+                <td class="w80 text-center purple-shade-4">{{dicount.gst}}
+                  <div class="action-btns">
+                    <a mat-button class="view" (click)="discountDetail(dicount.id)"><i class="material-icons">remove_red_eye</i>Edit</a>
+                    <button mat-button class="delete" (click)="deletediscount(dicount.id)"><i class="material-icons">delete_sweep</i> Delete</button>
+                  </div>
+                </td>
+              </tr>
+              
+              <ng-container *ngFor="let lead of skelton">
+                <tr class="sk-loading"  *ngIf="loader">
+                  <td><div>&nbsp;</div></td>
+                  <td class="w150"><div>&nbsp;</div></td>
+                  <td class="w150"><div>&nbsp;</div></td>
+                  <td class="w150"><div>&nbsp;</div></td>
+                  <td class="w80"><div>&nbsp;</div></td>
+                </tr>
+              </ng-container>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

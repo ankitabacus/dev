@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="13.905" height="13" viewBox="0 0 13.905 13">
+  <g id="dashboard" transform="translate(-16.998 -154)">
+    <path id="ic_tv_24px" d="M13.639,3H2.264A1.367,1.367,0,0,0,1,4.444v8.667a1.367,1.367,0,0,0,1.264,1.444h3.16V16H10.48V14.556h3.16a1.362,1.362,0,0,0,1.26-1.445V4.444A1.367,1.367,0,0,0,13.639,3Zm0,10.111H2.264V4.444H13.639Z" transform="translate(16 151)" fill="#fff"/>
+    <path id="Path_1" data-name="Path 1" d="M106.6,260.957h0v-.049h0l1.508-1.606,2.287.973,2.141-2.433,2.189-.243v5.352H106.6v-2.043l.146-.1-.037.535.037-.535" transform="translate(-86.35 -100.505)" fill="#fff"/>
+  </g>
+</svg>

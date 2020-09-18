@@ -1,0 +1,340 @@
+
+<div class="main-container" ng-init="order_dashboard()">
+    <div class="container">
+        <div class="scroll-body padding10 dashboard">
+            <div class="row top-info">
+                <figure class="col s2" style="width: 20%">
+                    <div class="box">
+                        <h1>Channel Partner</h1>
+                        <div class="bxe">
+                            <div class="outer">
+                                <div class="inner">
+                                    <h2>
+                                        <a routerLink="/distribution-list">{{count.dist}}</a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bt-bg">
+                            <img src="assets/img/icon-lead.png" alt="" style="width: 150px;">
+                        </div>
+                    </div>
+                </figure>
+                
+                <figure class="col s2" style="width: 20%">
+                    <div class="box">
+                        <h1>Direct Dealer</h1>
+                        <div class="bxe">
+                            <div class="outer">
+                                <div class="inner">
+                                    <h2>
+                                        <a routerLink="/direct-dealer">{{count.direct_dealer}}</a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bt-bg">
+                            <img src="assets/img/icon-distributer.png" alt="" style="width: 150px;">
+                        </div>
+                    </div>
+                </figure>
+                
+                <figure class="col s2" style="width: 20%">
+                    <div class="box">
+                        <h1>Check-In </h1>
+                        <div class="bxe">
+                            <div class="outer">
+                                <div class="inner">
+                                    <h2>
+                                        <a routerLink="/checkin">{{count.checkins}}</a>
+                                    </h2>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bt-bg">
+                            <img src="assets/img/icon-retailer.png" alt="" style="width: 150px;">
+                        </div>
+                    </div>
+                </figure>
+                
+                <figure class="col s2" style="width: 20%">
+                    <div class="box">
+                        <h1>Primary Order </h1>
+                        <div class="bxe">
+                            <div class="outer">
+                                <div class="inner">
+                                    <h2>
+                                        <a routerLink="/order-list">{{count.primary_order}}</a>
+                                        <a routerLink="/order-list"> &#x20B9; {{count.primary_order_total}}</a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bt-bg">
+                            <img src="assets/img/icon-order.png" alt="" style="width: 150px;">
+                        </div>
+                    </div>
+                </figure>
+                
+                <figure class="col s2" style="width: 20%">
+                    <div class="box">
+                        <h1>Secondary Order </h1>
+                        <div class="bxe">
+                            <div class="outer">
+                                <div class="inner">
+                                    <h2>
+                                        <a routerLink="/secondary-order-list">{{count.secondary_order}}</a>
+                                        <a routerLink="/secondary-order-list"> &#x20B9; {{count.secondary_order_total}}</a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bt-bg">
+                            <img src="assets/img/icon-order.png" alt="" style="width: 150px;">
+                        </div>
+                    </div>
+                </figure>
+                
+                
+                
+                
+                <div class="col s12" style="display: none;">
+                    <div class="dashboard-counter mt15">
+                        <div class="ds-count" style="background: #fe0000;">
+                            <p> Dealers Leads</p>
+                            <ul>
+                                <li>{{count.dealer_lead}}</li>
+                                
+                            </ul>
+                            <!-- <a class="next-content"><i class="material-icons">chevron_right</i></a> -->
+                        </div>
+                        
+                        <div class="ds-count" style="background: #d6621e;">
+                            <p> Plumber Leads</p>
+                            <ul>
+                                <li>{{count.plumber}}</li>
+                            </ul>
+                            <!-- <a class="next-content"><i class="material-icons">chevron_right</i></a> -->
+                        </div>
+                        
+                        <div class="ds-count"  >
+                            <p> Consumer Leads</p>
+                            <ul>
+                                <li>{{count.consumer}}</li>
+                            </ul>
+                            <!-- <a class="next-content"><i class="material-icons">chevron_right</i></a> -->
+                        </div>
+                        
+                        <div class="ds-count" style="background: #d6621e;">
+                            <p> Channel Partner Leads</p>
+                            <ul>
+                                <li>{{count.dr_lead}}</li>
+                            </ul>
+                            <!-- <a class="next-content"><i class="material-icons">chevron_right</i></a> -->
+                        </div>
+                        
+                        <div class="ds-count" style="background: #0063e5;">
+                            <p>Check In</p>
+                            <ul>
+                                <li>{{count.checkins}}</li>
+                            </ul>
+                            <!-- <a class="next-content"><i class="material-icons">chevron_right</i></a> -->
+                        </div>
+                        
+                    </div>
+                    <div class="dashboard-counter mt15">
+                        
+                        <div class="ds-count" style="background: #0063e5;">
+                            <p> Distributors</p>
+                            <ul>
+                                <li>{{count.dist}}</li>
+                                
+                            </ul>
+                            <!-- <a class="next-content"><i class="material-icons">chevron_right</i></a> -->
+                        </div>
+                        
+                        <div class="ds-count" style="background: #ff9104;">
+                            <p> Direct Dealers</p>
+                            <ul>
+                                <li>{{count.direct_dealer}}</li>
+                            </ul>
+                            <!-- <a class="next-content"><i class="material-icons">chevron_right</i></a> -->
+                        </div>
+                        
+                        <div class="ds-count" style="background: #fe0000;" >
+                            <p> Dealers</p>
+                            <ul>
+                                <li>{{count.dealer}}</li>
+                            </ul>
+                        </div>
+                        
+                        
+                        <div class="ds-count" style="background: #0063e5;">
+                            <p> Primary Orders</p>
+                            <ul>
+                                <li>{{count.primary_order}}</li>
+                            </ul>
+                            
+                        </div>
+                        
+                        <div class="ds-count" style="background: #ff9104;">
+                            <p> Secondary Orders</p>
+                            <ul>
+                                <li>{{count.secondary_order}}</li>
+                            </ul>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row graph-info">
+                <div class="col s12 figure">
+                    <div style="display: block">
+                        <canvas 
+                        baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s4">
+                <div class="ds-box pink">
+                    <div class="ds-head">
+                        Latest Checkin
+                    </div>
+                    <div class="ds-body">
+                        <div class="cs-information">
+                            <div class="cs-border" *ngFor="let row of count.checkin_row">
+                                <div class="top-srip">
+                                    <ul>
+                                        <li><p><span>Date :</span> {{row.visit_start | date: 'dd/MMM/yy' }}</p></li>
+                                        <li><p><span>Start :</span>{{row.visit_start | date: 'h:mm a' }}</p></li>
+                                        <li *ngIf="row.visit_end!='0000-00-00 00:00:00'"><p><span>End :</span> {{row.visit_end | date: 'h:mm a' }}</p></li>
+                                        <li  *ngIf="row.visit_end=='0000-00-00 00:00:00'"><p><span>End :</span> N.A.</p></li>
+                                    </ul>
+                                </div>
+                                <div class="flex-content">
+                                    <div class="alfa-digit" *ngIf="row.d_name!=''">{{row.d_name.charAt(0).toUpperCase()}}</div>
+                                    <div class="content">
+                                        <p ng-click="dr_detail(row.dr_id,row.dr_type)">{{row.d_name}}</p>
+                                        <span>Executive : {{row.user_name}}</span>
+                                    </div>
+                                </div>
+                                <div class="remark">
+                                    <strong>Remark : </strong>{{row.remark ? row.remark : 'N.A.'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="ds-box green">
+                    <div class="ds-head">
+                        Latest Order
+                    </div>
+                    <div class="ds-body">
+                        <div class="heighligt-order">
+                            <p><span class="primary"></span> Primary</p>
+                            <p><span class="secondary"></span>Secondary</p>
+                        </div>
+                        <div class="cs-information">
+                            <div class="cs-border" *ngFor="let row of count.secondaryorder" [ngClass]="row.type == '3' ? 'secondary' : 'primary'">
+                                <div class="top-srip">
+                                    <ul>
+                                        <li><p><span>Date :</span> {{row.date_created | date: 'MMM d, y'}}</p></li>
+                                        <li class="amount"><p><span>Amount :</span> &#x20B9; {{row.order_total}}</p></li>
+                                    </ul>
+                                </div>
+                                <div class="flex-content" style="margin-bottom: 0px;">
+                                    <div class="alfa-digit">{{row.user_name.charAt(0).toUpperCase()}}</div>
+                                    <div class="content">
+                                        <p> {{row.user_name}}</p>
+                                        <p *ngIf="row.type == 3"> Dealer : {{row.dr_name}}</p>
+                                        <p *ngIf="row.type == 1"> Distributor : {{row.dr_name}}</p>
+                                        <p *ngIf="row.type == 7"> Direct Dealer : {{row.dr_name}}</p>
+                                        <a routerLink="/order-detail/{{row.id}}"  style="color: #2f00ec;">{{row.order_no}}</a>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="ds-box orange">
+                    <div class="ds-head">
+                        Executive Information ( {{today_date}} )
+                    </div>
+                    <!-- <div class="ds-body">
+                        <table>
+                            <tr>
+                                <th class="text-left">Name</th>
+                                <th class="w80">Check In</th>
+                                <th class="w50">P.O.</th>
+                                <th class="w50">S.O.</th>
+                            </tr>
+                            <tr *ngFor="let row of user_list">
+                                <td>
+                                    <p>{{row.name}}</p>
+                                    <div class="time" *ngIf="row.attendance">
+                                        <p> {{row.attendance.start_time}}</p>
+                                        <p *ngIf="row.attendance.stop_time != '00:00:00'"> - {{row.attendance.stop_time}}</p>
+                                    </div>
+                                    
+                                    <div class="time" *ngIf="row.attendance">
+                                        <p> {{row.attendance}}</p>
+                                    </div>
+                                    
+                                </td>
+                                <td class="w80 text-center"><span class="count blue-bg">{{row.check_in}}</span></td>
+                                <td class="w50 text-center"><span class="count primary-bg">{{row.p_order}}</span></td>
+                                <td class="w50 text-center"><span class="count secondary-bg">{{row.order}}</span></td>
+                            </tr>
+                        </table>
+                    </div> -->
+                    
+                    
+                    <div class="dss-body">
+                        <div class="dss-body-1" *ngFor="let row of count.user_data">
+                            <div class="dss-head">
+                                <h3>{{row.name}}</h3>
+                                <p>{{row.attendance}} days</p>
+                            </div>
+                            
+                            <div class="detail">
+                                <ul>
+                                    <li>
+                                        <h3>Check In</h3>
+                                        <p><span>{{row.check_in}}</span></p>
+                                    </li>
+                                    
+                                    <li>
+                                        <h3>Primary Order</h3>
+                                        <p><span>{{row.p_order}}</span>  ₹ {{row.pri_order_value}}</p>
+                                    </li>
+                                    
+                                    <li>
+                                        <h3>Secondary Order</h3>
+                                        <p><span>{{row.order}}</span>  ₹ {{row.sec_order_value}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
