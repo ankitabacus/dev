@@ -1,0 +1,36 @@
+<ion-content  class="transprant-bg">
+  <div class="work-modal">
+    <div class="work-modal-bg">
+      <div>
+        
+        <div class="head">
+          <h2>SELECT TYPE</h2>
+          <a class="close" (click)="close()"><i class="material-icons">close</i></a>
+        </div>
+          
+        
+        <ion-list radio-group name="leadType" [(ngModel)]="data.leadType" #leadType="ngModel" required>
+          <ion-item>
+            <ion-label>Chanel Partner</ion-label>
+            <ion-radio value="1"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Direct Dealer</ion-label>
+            <ion-radio value="7"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Dealer</ion-label>
+            <ion-radio value="3"></ion-radio>
+          </ion-item>
+        </ion-list>
+        
+        <div class="text-right mt32">
+          <button type ="button" [disabled]="!data.leadType" ion-button color="secondary" (click)="submit()">Submit</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</ion-content>

@@ -1,0 +1,88 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "call-number": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-android-support-gradle-release": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-mauron85-background-geolocation": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.gravitybath.app"
+    }
+  }
+}

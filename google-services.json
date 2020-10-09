@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "821635763700",
+    "firebase_url": "https://gravity-bath.firebaseio.com",
+    "project_id": "gravity-bath",
+    "storage_bucket": "gravity-bath.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821635763700:android:5291c05f5f979076fd3da1",
+        "android_client_info": {
+          "package_name": "com.gravitybath.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "821635763700-go6cr5k8iluf0s9euoi5cv4oeln2fp5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-0vSHBpvGUEYWQx55MsafnhlDjHdke2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "821635763700-go6cr5k8iluf0s9euoi5cv4oeln2fp5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

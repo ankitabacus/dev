@@ -1,0 +1,204 @@
+
+<ion-header class="main-header remove">
+    <ion-navbar>
+        <ion-title>Products</ion-title>
+        <ion-buttons end >
+            <button ion-button class="top-cart-btn" (click)="toGoOrderPage()">
+                <span class="counter">12</span>
+                <i class="material-icons" >shopping_cart</i>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter pr16">
+                <ion-searchbar [(ngModel)]="filter.product_name" (keyup)="getCategory()" type='text'></ion-searchbar>
+                <button class="filter-btn" ion-button (click)="showdropdown()">
+                    <i class="material-icons">filter_alt</i>
+                    filter
+                </button>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- loop start -->
+    <div class="cs-list-full">
+        <div class="top-secation" >
+            <p (click)="goOnCategoryDetail()">Dora Scooter Square 66057</p>
+            <code (click)="goOnCategoryDetail()">#12345</code>
+            
+            <button class="add-fav" ion-button><i class="material-icons">&nbsp;</i></button>
+        </div>
+        <div class="mid-secation">
+            <div class="img-thumnail" (click)="goOnCategoryDetail()">
+                <img src="assets/imgs/default.png" alt="">
+            </div>
+            <div class="item-desc">
+                <div (click)="goOnCategoryDetail()">
+                    <span>Category</span>
+                    <p>Kick Scooters</p>
+                </div>
+                <div (click)="goOnCategoryDetail()">
+                    <span>HSN Code</span>
+                    <p>9505</p>
+                </div>
+                <div class="value">&#8377; 1999</div>
+                
+                <div class="item-cart-secation">
+                    <ul>
+                        <li>
+                            <button class="qty-btn" ion-button><i class="material-icons">remove</i></button>
+                        </li>
+                        <li>
+                            <input type="text" placeholder="Qty">
+                        </li>
+                        <li>
+                            <button class="qty-btn" ion-button><i class="material-icons">add</i></button>
+                        </li>
+                        <li>
+                            <button class="add-cart" ion-button><i class="material-icons">shopping_cart</i>Add Cart</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- loop end -->
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+        <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</ion-content>
+<!-- active class add modal-outer -->
+<div class="modal-outer" [ngClass]="status1 ? 'active' : ''">
+    <div class="filter-modal">
+        <div class="filter-head">
+            <button ion-button class="close-modal" (click)="hidedropdown()"><i class="material-icons">keyboard_arrow_down</i></button>
+            <h2>Filter</h2>
+            <span (click)="doRefresh($event);hidedropdown()">Clear</span>
+        </div>
+        <div class="filter-body">
+            <div class="filtr-btn">
+                <ng-container>
+                    <button (click)="activeMode=1" ion-button [ngClass]="{'active': activeMode==1}">Category</button>
+                </ng-container>
+                <button (click)="activeMode=2" [ngClass]="{'active': activeMode==2}" ion-button>Price</button>
+            </div>
+
+            <div *ngIf="activeMode==1" class="filter-list ds-none">
+                <ion-list radio-group>
+                    <ion-item *ngFor="let data of uniqueProduct">
+                        <ion-label>{{data}}</ion-label>
+                        <ion-radio (click)="selectfilterproduct(data)"></ion-radio>
+                    </ion-item>
+                </ion-list>
+            </div>
+<<<<<<< Updated upstream
+            
+            <div class="filter-list ds-none">
+=======
+
+            <div *ngIf="activeMode==2" class="filter-list ds-none">
+>>>>>>> Stashed changes
+                <ion-item>
+                    <ion-radio value="cord"></ion-radio>
+                    <ion-label>Price Low - High</ion-label>
+                  </ion-item>
+                
+                  <ion-item>
+                      <ion-radio value="duesenberg"></ion-radio>
+                    <ion-label>Price High - Low</ion-label>
+                  </ion-item>
+            </div>
+<<<<<<< Updated upstream
+            
+            <button class="footer-btn" ion-button>Apply</button>
+=======
+
+            <button class="footer-btn" ion-button (click)="gofilterproduct()">Apply</button>
+>>>>>>> Stashed changes
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- -------Old Catalogue------------ -->
+<ion-header style="display: none;">
+    <ion-navbar>
+        <ion-title>Main Category</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <!-- getProductCategoryList(filter.category_name);getProductSubCategoryList() -->
+                <ion-searchbar type='text' name='category_name' [(ngModel)]="filter.category_name" (keyup.enter)="goToProductsWithSearch(filter.category_name)"></ion-searchbar>
+            </div>
+        </div>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="listing add-images grid-listing" style="display: none;">
+
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="nothing-here"  *ngIf="!prod_cat_list.length && no_rec">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/no_found.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+    
+ 
+
+    <!-- <div>
+       <button (click)="goToNewArrivals()"> New Arrivals</button>
+    </div> -->
+
+    <div *ngIf="prod_cat_list.length" class="main-div" >
+        <ion-list *ngFor="let list of prod_cat_list; let i=index" >
+            <!-- <a>{{list.image}}</a> -->
+            <button  *ngIf="!list.image" ion-item (click)="goOnCategoryListPage(list.main_category)">
+                <div class="image-manage">
+                    <img  src="assets/imgs/no-thumbnail.jpg">
+                </div>
+                <p>{{list.main_category}}</p>
+            </button>
+
+            <button  *ngIf="list.image" ion-item (click)="goOnCategoryListPage(list.main_category)">
+                <div class="image-manage">
+                    <img  src="{{list.imageCompletePath}}">
+                </div>
+                <p>{{list.main_category}}</p>
+            </button>
+        </ion-list>
+
+    </div>
+
+    <div class="main-div" *ngIf="!prod_cat_list.length && !no_rec">
+        <ion-list *ngFor="let row of skelton" >
+            <button class="skleton-box"></button>
+        </ion-list>
+    </div>
+
+</ion-content>
+
